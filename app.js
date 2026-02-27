@@ -5,15 +5,22 @@ const { exec } = require("child_process");
 const app = express();
 app.use(express.json());
 
-// DB接続プール
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT),
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  ssl: { rejectUnauthorized: false },
-});
+const path = require("path");
+
+// テンプレートエンジンの設定
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+// 静的ファイルの設定
+app.use(express.static(path.join(__dirname, "public")));
+
+// DB接続
+const pool = require("./db");
+
+// ルーターの読み込み
+const loginRouter = require("./public/js/login");
+
+app.use("/login", loginRouter);
 
 // 接続テスト
 app.get("/test", async (req, res) => {
@@ -156,7 +163,7 @@ app.get("/check", async (req, res) => {
 
 app.listen(3000, () => {
   console.log("サーバー起動: http://localhost:3000");
-  const url = "http://localhost:3000/test";
+  const url = "http://localhost:3000/login";
   const command =
     process.platform === "darwin"
       ? `open ${url}`
