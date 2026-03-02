@@ -11,16 +11,33 @@
     <link rel="stylesheet" href="/public/css/.css" />
   </head>
   <body>
-    <h1>ログイン</h1>
-    <form action="/login" method="POST">
-      <label for="email">メールアドレス:</label>
-      <input type="email" id="email" name="email" required />
-      <br />
-      <label for="password">パスワード:</label>
-      <input type="password" id="password" name="password" required />
-      <br />
-      <button type="submit">ログイン</button>
-    </form>
+    <% if (error) { %>
+<div class="modal-overlay">
+  <div class="modal">
+    <div class="modal-content">
+      <p class="modal-error"><%= error %></p>
+      <a href="/login" class="modal-btn">戻る</a>
+    </div>
+  </div>
+</div>
+<% } %>
+    <div class="login">
+      <h3>ログイン</h3>
+    </div>
+
+    <div class="infoInput">
+      <form class="input" action="/login" method="post">
+        <label>メールアドレス:</label>
+        <input type="email" name="mail" required />
+        <label>パスワード:</label>
+        <input type="password" name="password" required />
+        <input type="submit" value="ログイン" />
+      </form>
+      <div class="pageChange">
+        <a href="/newUser">新規登録はこちら</a>
+        <!-- <a href="/forgetPassword">パスワードをお忘れの方はこちら</a> -->
+      </div>
+    </div>
     <script></script>
   </body>
 </html>

@@ -4,6 +4,7 @@ const mysql = require("mysql2/promise");
 const { exec } = require("child_process");
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // フォームデータ解析用
 
 const path = require("path");
 
@@ -19,8 +20,10 @@ const pool = require("./db");
 
 // ルーターの読み込み
 const loginRouter = require("./public/js/login");
+const newUserRouter = require("./public/js/newUser");
 
 app.use("/login", loginRouter);
+app.use("/newUser", newUserRouter);
 
 // 接続テスト
 app.get("/test", async (req, res) => {
