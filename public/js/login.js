@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
       // req.session.userId = results[0].id;
 
       // ✅ 存在するルートへリダイレクト
-      return res.redirect("/login"); // または別の実装済みページ
+      return res.redirect("/main"); // または別の実装済みページ
     } else {
       return res.render("loginView", {
         error: "メールアドレスまたはパスワードが正しくありません",

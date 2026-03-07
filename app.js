@@ -21,9 +21,11 @@ const pool = require("./db");
 // ルーターの読み込み
 const loginRouter = require("./public/js/login");
 const newUserRouter = require("./public/js/newUser");
+const mainRouter = require("./public/js/main");
 
 app.use("/login", loginRouter);
 app.use("/newUser", newUserRouter);
+app.use("/main", mainRouter);
 
 // 接続テスト
 app.get("/test", async (req, res) => {
