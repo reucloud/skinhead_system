@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="/public/css/.css" />
+    <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
     <% if (error) { %>
@@ -21,7 +21,7 @@
   </div>
 </div>
 <% } %>
-    <div class="login">
+    <div class="header">
       <h3>ログイン</h3>
     </div>
 
@@ -31,7 +31,7 @@
         <input type="email" name="mail" required />
         <label>パスワード:</label>
         <input type="password" name="password" required />
-        <input type="submit" value="ログイン" />
+        <input class="submit-btn" type="submit" value="ログイン" />
       </form>
       <div class="pageChange">
         <a href="/newUser">新規登録はこちら</a>
