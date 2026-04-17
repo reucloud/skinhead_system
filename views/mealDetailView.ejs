@@ -11,6 +11,25 @@
     <link rel="stylesheet" href="/css/.css" />
   </head>
   <body>
+    <% if(meals.type === "breakfast") { %>
+      <h3>朝ごはんの詳細</h3>
+      <% } else if(meals.type === "lunch") { %>
+      <h3>昼ごはんの詳細</h3>
+      <% } else if(meals.type === "dinner") { %>
+      <h3>夕ごはんの詳細</h3>
+      <% } %>
+    <p>日付: <%= mealDate %></p>
+    <% if(meals && meals.length > 0) { %>
+      <% meals.forEach(meal => { %>
+        <p>メニュー: <%= meal.dish_name %></p>
+        <p>カロリー: <%= meal.calorie %>kcal</p>
+        <p>タンパク質: <%= meal.protein %>g</p>
+        <p>脂質: <%= meal.fat %>g</p>
+        <p>炭水化物: <%= meal.carbohydrate %>g</p>
+      <% }); %>
+    <% } else { %>
+      <p>メニューはありません。</p>
+    <% } %>
     <script></script>
   </body>
 </html>

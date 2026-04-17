@@ -1,5 +1,3 @@
-# Pull Request Template
-
 ## 概要
 
 <!-- このPRで何をしたか簡潔に書いてください -->
