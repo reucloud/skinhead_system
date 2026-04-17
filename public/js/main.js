@@ -11,4 +11,25 @@ router.post("/", async (req, res) => {
   res.redirect("/main");
 });
 
+router.get("/menuDetails/:meal", async (req, res) => {
+  try {
+    const date = req.query.date; // クエリパラメータから日付を取得
+    const mealType = req.params.meal; // URLパラメータから食事の種類を取得（例: breakfast, lunch, dinner）
+
+    // ✅ pool を直接使う（Promise版）
+    const [meals] = await pool.query(
+      "SELECT * FROM meal WHERE date = ? AND type = ?",
+      [date, mealType],
+    );
+
+    res.render("mealDetailView", { meals: meals, mealDate: date });
+  } catch (error) {
+    console.error("エラー:", error);
+    res.render("mealDetailView", {
+      meals: [],
+      error: "データを取得できませんでした",
+    });
+  }
+});
+
 module.exports = router;
